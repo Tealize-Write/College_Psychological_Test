@@ -3,473 +3,509 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="字命學院：測驗你是哪種作者？找出你的寫作特質分類！這份心理測驗是以作者特質分類為主題，讓你了解自己是哪種作者型態，從而更深入地認識自己。完成這份心理測驗後，您將會得到一份特質報告，詳細介紹您的寫作風格和創作特質，以及如何進一步發展自己的創作能力。我們相信這份測驗將會對您的創作之路有所幫助，讓您更加自信和有目標地創作出優秀的作品。趕快來參加這份心理測驗，看看您是哪一種作者類型吧！">
-    <link rel="stylesheet" href="css/csstyle.css">
-    <title>字命學院【創作特質測驗】你是哪種作者？</title>
+    <meta name="description" content="字命學院：測驗你是哪種作者？找出你的寫作特質分類！">
+    <link rel="stylesheet" href="css/style.css">
+    <title>字命學院【創作特質測驗】</title>
 </head>
 
-<!--紅_綠_藍_黑_白-->
 <body>
-    <figure><img src="img/school.png" ; alt="情境配圖"></figure>
-    <h1>【創作特質測驗】你最適合哪個字命學院？</h1>
-    <form id="quiz-form" onsubmit="calc(event)">
-        <fieldset>
-            <legend>
-                壹、程度題：
-                （3-完全符合，2-大致符合，1-有點符合，0-沒有）
-            </legend>
-            <div class="question">
-                <label><input type="radio" name="degree1" value="2_3_0_0_0"><span>3</span></label>
-                <label><input type="radio" name="degree1" value="1_2_0_0_0"><span>2</span></label>
-                <label><input type="radio" name="degree1" value="1_1_0_0_0"><span>1</span></label>
-                <label><input type="radio" name="degree1" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙 認為故事最有趣的部分來自創意，因此喜歡以奇特有趣的設定為主。若故事沒有新意就覺得乏善可陳。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree2" value="0_0_0_0_3"><span>3</span></label>
-                <label><input type="radio" name="degree2" value="0_0_0_0_2"><span>2</span></label>
-                <label><input type="radio" name="degree2" value="0_0_0_0_1"><span>1</span></label>
-                <label><input type="radio" name="degree2" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟚 會花費大量的時間和精力來塑造每個角色的背景和性格，讓人物推動劇情。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree3" value="0_0_-3_0_0"><span>3</span></label>
-                <label><input type="radio" name="degree3" value="0_0_-2_0_0"><span>2</span></label>
-                <label><input type="radio" name="degree3" value="0_0_-1_0_0"><span>1</span></label>
-                <label><input type="radio" name="degree3" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟛 故事並非現實，沒必要糾結不重要的細節邏輯。</span>
-            </div>
+<ul class="bg-squares">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+    <div class="container">
+        <figure><img src="img/school.png" alt="情境配圖" style="opacity: 0.9;"></figure>
+        <h1>【創作特質測驗】</h1>
+        
+        <form id="quiz-form">
+            <fieldset>
+                <legend>
+                    壹、程度題<br>
+                    <span style="font-size: 0.7em; font-weight: normal; color: var(--text-secondary); letter-spacing: 1px;">請選擇符合程度 (3:完全符合 - 0:沒有)</span>
+                </legend>
 
-            <div class="question">
-                <label><input type="radio" name="degree4" value="0_2_3_0_0"><span>3</span></label>
-                <label><input type="radio" name="degree4" value="0_1_2_0_0"><span>2</span></label>
-                <label><input type="radio" name="degree4" value="0_1_1_0_0"><span>1</span></label>
-                <label><input type="radio" name="degree4" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟜 即使奇幻創作也該有一定的邏輯系統在運作，創意不該只是天馬行空，而是將幻想合理化，說服得了讀者，讀者才有辦法融入幻想的世界。</span>
-            </div>
-
-            <div class="question">
-                <label><input type="radio" name="degree5" value="3_0_0_0_0"><span>3</span></label>
-                <label><input type="radio" name="degree5" value="2_0_0_0_0"><span>2</span></label>
-                <label><input type="radio" name="degree5" value="1_0_0_0_0"><span>1</span></label>
-                <label><input type="radio" name="degree5" value="-2_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟝 我很清楚自己的(或最喜歡的)作品在市場上的優勢和劣勢。</span>
-
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree6" value="3_0_0_0_0"><span>3</span></label>
-                <label><input type="radio" name="degree6" value="2_0_0_0_0"><span>2</span></label>
-                <label><input type="radio" name="degree6" value="1_0_0_0_0"><span>1</span></label>
-                <label><input type="radio" name="degree6" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟞 就算作品寫得好也要配合行銷宣傳，認為只要好看就能吸引很多人上門是天真的想法。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree7" value="0_3_0_0_0"><span>3</span></label>
-                <label><input type="radio" name="degree7" value="0_2_0_0_0"><span>2</span></label>
-                <label><input type="radio" name="degree7" value="0_1_0_0_0"><span>1</span></label>
-                <label><input type="radio" name="degree7" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟟 自己的(或最喜歡的)作品多數是非現實背景，而且堅持創作出與眾不同、獨一無二的世界觀，無法接受使用他人已創作過的設定。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree8" value="0_0_3_2_0"><span>3</span></label>
-                <label><input type="radio" name="degree8" value="0_0_2_1_0"><span>2</span></label>
-                <label><input type="radio" name="degree8" value="0_0_1_1_0"><span>1</span></label>
-                <label><input type="radio" name="degree8" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟠 通常喜歡把更多的時間和精力花在設定上，往往會設定寫得比正文還要多。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree9" value="0_0_0_-3_0"><span>3</span></label>
-                <label><input type="radio" name="degree9" value="0_0_0_-2_0"><span>2</span></label>
-                <label><input type="radio" name="degree9" value="0_0_0_-1_0"><span>1</span></label>
-                <label><input type="radio" name="degree9" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟡 覺得只要故事夠好，文筆看得懂即可，不需要太雕琢文字。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree10" value="0_0_3_0_0"><span>3</span></label>
-                <label><input type="radio" name="degree10" value="0_0_2_0_0"><span>2</span></label>
-                <label><input type="radio" name="degree10" value="0_0_1_0_0"><span>1</span></label>
-                <label><input type="radio" name="degree10" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙𝟘 創作時會謹慎思考避免作品出現矛盾，並蒐集自己專用的工具書方便查閱。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree11" value="0_0_0_0_3"><span>3</span></label>
-                <label><input type="radio" name="degree11" value="0_0_0_0_2"><span>2</span></label>
-                <label><input type="radio" name="degree11" value="0_0_0_0_1"><span>1</span></label>
-                <label><input type="radio" name="degree11" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙𝟙 沒有特定喜歡的類別，只要角色夠有魅力都喜歡，特別喜歡人物互動及心理描寫。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree12" value="0_0_0_3_0"><span>3</span></label>
-                <label><input type="radio" name="degree12" value="0_0_0_2_0"><span>2</span></label>
-                <label><input type="radio" name="degree12" value="0_0_0_1_0"><span>1</span></label>
-                <label><input type="radio" name="degree12" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙𝟚 能閱讀較硬的文字，閱讀的讀物中包含詩詞古文歷史傳記、或是經典文學名著。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree13" value="-3_0_0_0_0"><span>3</span></label>
-                <label><input type="radio" name="degree13" value="-2_0_0_0_0"><span>2</span></label>
-                <label><input type="radio" name="degree13" value="-1_0_0_0_0"><span>1</span></label>
-                <label><input type="radio" name="degree13" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙𝟛 有些輕視花很多時間經營自己、四處交際的作家。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree14" value="0_0_0_0_-3"><span>3</span></label>
-                <label><input type="radio" name="degree14" value="0_0_0_0_-2"><span>2</span></label>
-                <label><input type="radio" name="degree14" value="0_0_0_0_-1"><span>1</span></label>
-                <label><input type="radio" name="degree14" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙𝟜 人物僅為劇情服務，過多的心理細節描寫反而會造成劇情節奏拖沓。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree15" value="0_3_0_0_0"><span>3</span></label>
-                <label><input type="radio" name="degree15" value="0_2_0_0_0"><span>2</span></label>
-                <label><input type="radio" name="degree15" value="0_1_0_0_0"><span>1</span></label>
-                <label><input type="radio" name="degree15" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙𝟝 喜歡突破禁忌或挑戰傳統的題材，可能也喜歡獵奇或恐怖靈異的傳說。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree16" value="0_0_0_3_0"><span>3</span></label>
-                <label><input type="radio" name="degree16" value="0_0_0_2_0"><span>2</span></label>
-                <label><input type="radio" name="degree16" value="0_0_0_1_0"><span>1</span></label>
-                <label><input type="radio" name="degree16" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙𝟞 講究作品深度，會在作品中探討各種議題。</span>
-            </div>
-            <div class="question">
-
-                <label><input type="radio" name="degree17" value="0_-3_0_0_0"><span>3</span></label>
-                <label><input type="radio" name="degree17" value="0_-2_0_0_0"><span>2</span></label>
-                <label><input type="radio" name="degree17" value="0_-1_0_0_0"><span>1</span></label>
-                <label><input type="radio" name="degree17" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙𝟟 對於架空的故事較難產生共鳴，認為寫實的作品比較親切。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree18" value="0_0_0_3_0"><span>3</span></label>
-                <label><input type="radio" name="degree18" value="0_0_0_2_0"><span>2</span></label>
-                <label><input type="radio" name="degree18" value="0_0_0_1_0"><span>1</span></label>
-                <label><input type="radio" name="degree18" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙𝟠 經常會考慮要使用什麼樣的手法來營造情境，並運用各種文學技巧來豐富作品的表達。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree19" value="0_0_2_0_3"><span>3</span></label>
-                <label><input type="radio" name="degree19" value="0_0_1_0_2"><span>2</span></label>
-                <label><input type="radio" name="degree19" value="0_0_1_0_1"><span>1</span></label>
-                <label><input type="radio" name="degree19" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟙𝟡 喜歡到處觀察人群，推測人的心理活動及生活背景，甚至將覺得有意思的互動或對話紀錄下來。</span>
-            </div>
-            <div class="question">
-                <label><input type="radio" name="degree20" value="3_0_0_0_2"><span>3</span></label>
-                <label><input type="radio" name="degree20" value="2_0_0_0_1"><span>2</span></label>
-                <label><input type="radio" name="degree20" value="1_0_0_0_1"><span>1</span></label>
-                <label><input type="radio" name="degree20" value="0_0_0_0_0"><span>0</span></label>
-                <span class="qa">𝟚𝟘 注意到角色小說的市場，會留意角色應該增加的萌點或是粉紅泡泡的互動，以此提高作品的吸引度。</span>
-            </div>
-        </fieldset>
-
-        <figure class="fig">
-            <figcaption>
-                <span class="brk">～還有10題，快寫完囉！～</span>
-            </figcaption>
-            <img src="https://static.penana.com/images/chapter/987740/s7_0g_Banner.jpg" alt="情境配圖">
-        </figure>
-        <fieldset>
-            <legend>貳、選擇題</legend>
-            <div class="choice-questions">
-                <p>𝟙 情境假設，主角在一間空屋的書桌上發現了10年前自己和青梅竹馬的合照，你喜歡哪個接下來的劇情？</p>
-                <div class="answer">
-                    <label>
-                        <input type="radio" name="degree21" value="0_0_0_3_0">
-                        <span class="option">(A)這一幕是主角內心的精神思辨，空屋應該是小時候的住處的樣子，象徵他童年的心理，既然是空屋，代表主角幼年可能童年可能遭遇什麼，所以記憶有些空洞，而照片的青梅竹馬應是關鍵。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree21" value="3_0_0_0_0">
-                        <span class="option">(B)其實主角做了虧心事，但夜路走多了遇到鬼，他誤打誤撞走進了鬼屋，他很害怕，感覺背後有什麼，結果找到了一張自己和青梅竹馬的童年照，這時照片裡的青梅竹馬臉部發黑，變成死不瞑目的樣子……</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree21" value="0_0_0_0_3">
-                        <span class="option">(C)照片觸發了主角的回憶，讓他沉浸在與青梅竹馬相處的種種回憶之中，回想起兩人曾經毫無保留地分享彼此的心情，彼此間充滿了無邊的信任和默契。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree21" value="0_0_3_0_0">
-                        <span class="option">(D)主角接著開始調查為何空屋裡會有這樣一張合照？他可能在追查某件事，結果在他調查的地點被人放上了自己小時候的照片以示警告，同時主角推測這個威脅者應該也是青梅竹馬認識的人。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree21" value="0_3_0_0_0">
-                        <span class="option">(E)主角其實是一隻山羊，誤闖空屋，發現桌上一群小羊的照片，牠就情不自禁地把照片紙吃了，結果拉肚子。</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="choice-questions">
-                <p>𝟚 描述失戀感傷時，喜歡以下哪種作為象徵？</p>
-                <div class="answer">
-                    <label>
-                        <input type="radio" name="degree22" value="2_0_0_0_0">
-                        <span class="option">(A)雨天</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree22" value="0_0_0_0_2">
-                        <span class="option">(B)揉掉的電影票</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree22" value="0_0_2_0_0">
-                        <span class="option">(C)沒電的時鐘</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree22" value="0_2_0_0_0">
-                        <span class="option">(D)充滿鼻涕的魚骨</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree22" value="0_0_0_2_0">
-                        <span class="option">(E)爬滿寒霧的小窗</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="choice-questions">
-                <p>𝟛 以下哪個敘述最符合你目前筆下最喜歡的作品（如果沒有，就選看過的書中最喜歡的作品）？</p>
-                <div class="answer">
-                    <label>
-                        <input type="radio" name="degree23" value="5_0_0_0_0">
-                        <span class="option">(A)是熱門題材。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree23" value="0_5_0_0_0">
-                        <span class="option">(B)主打獨創設定。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree23" value="0_0_5_0_0">
-                        <span class="option">(C)設定集的篇幅不亞於正文。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree23" value="0_0_0_5_0">
-                        <span class="option">(D)文學性高，富有想傳達的中心思想。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree23" value="0_0_0_0_5">
-                        <span class="option">(E)角色很有魅力，有魅力到就算只是出場刷牙洗臉也有人愛看。</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="choice-questions">
-                <p>𝟜  以下哪個敘述最符合你目前筆下第二喜歡的作品（如果沒有，就選看過的書中第二喜歡的作品）？</p>
-                <div class="answer">
-                    <label>
-                        <input type="radio" name="degree24" value="0_0_0_0_3">
-                        <span class="option">(A)人物情感十分細膩。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree24" value="0_0_3_0_0">
-                        <span class="option">(B)背景設定考究細緻。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree24" value="0_0_0_3_0">
-                        <span class="option">(C)斟字酌句，描寫情境彷彿歷歷在目。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree24" value="3_0_0_0_0">
-                        <span class="option">(D)題材通俗易懂，劇情高潮迭起。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree24" value="0_3_0_0_0">
-                        <span class="option">(E)給人感覺耳目一新。</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="choice-questions">
-                <p>𝟝 寫字大小：</p>
-                <div class="answer">
-                    <label>
-                        <input type="radio" name="degree25" value="1_0_0_0_0">
-                        <span class="option">(A)較大</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree25" value="0_1_0_0_0">
-                        <span class="option">(B)有大有小</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree25" value="0_0_0_0_1">
-                        <span class="option">(C)較小</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree25" value="0_0_0_1_0">
-                        <span class="option">(D)剛好，甚至間距差不多</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="choice-questions">
-                <p>𝟞 手寫「東」字，選最明顯的特色：</p>
-                <div class="answer">
-                    <label>
-                        <input type="radio" name="degree26" value="1_0_0_0_0">
-                        <span class="option">(A)第一筆的「一」寫很長，比「果」凸出不少</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree26" value="0_0_1_0_0">
-                        <span class="option">(B)右撇子的你撇出去的左撇「/」較長；左撇子的你撇出去的右撇「\」較長</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree26" value="0_0_0_0_1">
-                        <span class="option">(C)右撇子的你撇出去的右撇「\」較長；左撇子的你撇出去的左撇「/」較長</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree26" value="0_1_0_0_0">
-                        <span class="option">(D)字型偏圓</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree26" value="0_0_0_1_0">
-                        <span class="option">(E)以上皆非</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="choice-questions">
-                <p>𝟟 不靠格線，橫式書寫一行字：</p>
-                <div class="answer">
-                    <label>
-                        <input type="radio" name="degree27" value="0_1_0_0_0">
-                        <span class="option">(A)越寫越往上偏</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree27" value="0_0_0_1_0">
-                        <span class="option">(B)往右下偏</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree27" value="0_0_1_0_0">
-                        <span class="option">(C)不偏不倚(小幅度偏移可接受)</span>
-                    </label>
-                </div>
-            </div>
-            <div class="choice-questions">
-                <p>𝟠 不靠隔線，直式書寫一行字：</p>
-                <div class="answer">
-                    <label>
-                        <input type="radio" name="degree28" value="0_0_0_0_1">
-                        <span class="option">(A)右撇子的你越寫越偏左；左撇子的你越寫越偏右</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree28" value="0_0_1_0_0">
-                        <span class="option">(B)右撇子的你越寫越偏右；左撇子的你越寫越偏左</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree28" value="1_0_0_0_0">
-                        <span class="option">(C)不偏不倚(小幅度偏移可接受)</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="choice-questions">
-                <p>𝟡 字跡特色，選最明顯的特色：</p>
-                <div class="answer">
-                    <label>
-                        <input type="radio" name="degree29" value="0_0_1_0_0">
-                        <span class="option">(A)一筆一畫、方正</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree29" value="0_0_0_0_1">
-                        <span class="option">(B)筆畫連綿、圓滑</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree29" value="1_0_0_0_0">
-                        <span class="option">(C)筆壓重</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree29" value="0_1_0_0_0">
-                        <span class="option">(D)右撇子的你字型右傾：左撇子的你字型左傾</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree29" value="0_0_0_1_0">
-                        <span class="option">(E)右撇子的你字型左傾：左撇子的你字型右傾</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="choice-questions">
-                <p>𝟙𝟘 最難以忍受故事有什麼問題，讓你難以看下去？</p>
-                <div class="answer">
-                    <label>
-                        <input type="radio" name="degree30" value="0_3_0_0_0">
-                        <span class="option">(A)老套沒有新意。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree30" value="0_0_0_3_0">
-                        <span class="option">(B)視角亂換，就算能勉強看懂也毫無文筆可言。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree30" value="0_0_0_3_0">
-                        <span class="option">(C)邏輯令人瘋狂吐槽，智商狂降。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree30" value="0_0_0_0_3">
-                        <span class="option">(D)心理描寫牽強，人物關係進展太過迅速。</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="degree30" value="3_0_0_0_0">
-                        <span class="option">(E)前5000字沒有吸引到你，就不看了。</span>
-                    </label>
-                </div>
-            </div>
-
-
-        </fieldset>
-        <button type="submit">點我查看結果</button>
-    </form>
-    <section class="test">
-        <div class="test-container">
-            <h1>創作特質測驗結果</h1>
-            <div class="test-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>紅馳</th>
-                            <th>綠躍</th>
-                            <th>藍行</th>
-                            <th>墨佇</th>
-                            <th>銀倚</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="sred-text"></td>
-                            <td id="sgreen-text"></td>
-                            <td id="sblue-text"></td>
-                            <td id="sblack-text"></td>
-                            <td id="swhite-text"></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="test-note">
-                    <p>選擇最高分的學院進入。</p>
-                    <p>
-                        若出現同分情況，請優先選擇喜歡的學院。以下列出各學院最重視的核心屬性（當然這不代表其他屬性不重要）：
-                    </p>
-                    <ul>
-                        <li>紅馳學院——IP 、市場</li>
-                        <li>綠躍學院——創意、有趣、獵奇、沙雕</li>
-                        <li>藍行學院——合理性、細節、邏輯、考究</li>
-                        <li>墨佇學院——文學、文筆、文字技巧</li>
-                        <li>銀倚學院——角色、情感描寫、心理研究</li>
-                    </ul>
+                <div class="question">
+                    <p class="qa">𝟙 認為故事最有趣的部分來自創意，因此喜歡以奇特有趣的設定為主。若故事沒有新意就覺得乏善可陳。</p>
+                    <label><input type="radio" name="degree1" value="2_3_0_0_0"><span>3 (完全符合)</span></label>
+                    <label><input type="radio" name="degree1" value="1_2_0_0_0"><span>2 (大致符合)</span></label>
+                    <label><input type="radio" name="degree1" value="1_1_0_0_0"><span>1 (有點符合)</span></label>
+                    <label><input type="radio" name="degree1" value="0_0_0_0_0"><span>0 (沒有)</span></label>
                 </div>
 
-            </div>
+                <div class="question">
+                    <p class="qa">𝟚 會花費大量的時間和精力來塑造每個角色的背景和性格，讓人物推動劇情。</p>
+                    <label><input type="radio" name="degree2" value="0_0_0_0_3"><span>3</span></label>
+                    <label><input type="radio" name="degree2" value="0_0_0_0_2"><span>2</span></label>
+                    <label><input type="radio" name="degree2" value="0_0_0_0_1"><span>1</span></label>
+                    <label><input type="radio" name="degree2" value="0_0_0_0_0"><span>0</span></label>
+                </div>
 
-            <h1>前往學院解析</h1>
-            <nav class="test-cho">
-                <a href="red.html" target="new">紅馳學院</a>
-                <a href="green.html" target="new">綠躍學院</a>
-                <a href="blue.html" target="new">藍行學院</a>
-                <a href="black.html" target="new">墨佇學院</a>
-                <a href="white.html" target="new">銀倚學院</a>
-            </nav>
-            <h1>背景介紹解說</h1>
-            <nav class="test-cho">
-                <a href="about.html" target="new"><b>測驗與學院的設計</b></a>
-            </nav>
-        </div>
-    </section>
+                <div class="question">
+                    <p class="qa">𝟛 故事並非現實，沒必要糾結不重要的細節邏輯。</p>
+                    <label><input type="radio" name="degree3" value="0_0_-3_0_0"><span>3</span></label>
+                    <label><input type="radio" name="degree3" value="0_0_-2_0_0"><span>2</span></label>
+                    <label><input type="radio" name="degree3" value="0_0_-1_0_0"><span>1</span></label>
+                    <label><input type="radio" name="degree3" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟜 即使奇幻創作也該有一定的邏輯系統在運作，創意不該只是天馬行空，而是將幻想合理化，說服得了讀者，讀者才有辦法融入幻想的世界。</p>
+                    <label><input type="radio" name="degree4" value="0_2_3_0_0"><span>3</span></label>
+                    <label><input type="radio" name="degree4" value="0_1_2_0_0"><span>2</span></label>
+                    <label><input type="radio" name="degree4" value="0_1_1_0_0"><span>1</span></label>
+                    <label><input type="radio" name="degree4" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟝 我很清楚自己的(或最喜歡的)作品在市場上的優勢和劣勢。</p>
+                    <label><input type="radio" name="degree5" value="3_0_0_0_0"><span>3</span></label>
+                    <label><input type="radio" name="degree5" value="2_0_0_0_0"><span>2</span></label>
+                    <label><input type="radio" name="degree5" value="1_0_0_0_0"><span>1</span></label>
+                    <label><input type="radio" name="degree5" value="-2_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟞 就算作品寫得好也要配合行銷宣傳，認為只要好看就能吸引很多人上門是天真的想法。</p>
+                    <label><input type="radio" name="degree6" value="3_0_0_0_0"><span>3</span></label>
+                    <label><input type="radio" name="degree6" value="2_0_0_0_0"><span>2</span></label>
+                    <label><input type="radio" name="degree6" value="1_0_0_0_0"><span>1</span></label>
+                    <label><input type="radio" name="degree6" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟟 自己的(或最喜歡的)作品多數是非現實背景，而且堅持創作出與眾不同、獨一無二的世界觀，無法接受使用他人已創作過的設定。</p>
+                    <label><input type="radio" name="degree7" value="0_3_0_0_0"><span>3</span></label>
+                    <label><input type="radio" name="degree7" value="0_2_0_0_0"><span>2</span></label>
+                    <label><input type="radio" name="degree7" value="0_1_0_0_0"><span>1</span></label>
+                    <label><input type="radio" name="degree7" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟠 通常喜歡把更多的時間和精力花在設定上，往往會設定寫得比正文還要多。</p>
+                    <label><input type="radio" name="degree8" value="0_0_3_2_0"><span>3</span></label>
+                    <label><input type="radio" name="degree8" value="0_0_2_1_0"><span>2</span></label>
+                    <label><input type="radio" name="degree8" value="0_0_1_1_0"><span>1</span></label>
+                    <label><input type="radio" name="degree8" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟡 覺得只要故事夠好，文筆看得懂即可，不需要太雕琢文字。</p>
+                    <label><input type="radio" name="degree9" value="0_0_0_-3_0"><span>3</span></label>
+                    <label><input type="radio" name="degree9" value="0_0_0_-2_0"><span>2</span></label>
+                    <label><input type="radio" name="degree9" value="0_0_0_-1_0"><span>1</span></label>
+                    <label><input type="radio" name="degree9" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟙𝟘 創作時會謹慎思考避免作品出現矛盾，並蒐集自己專用的工具書方便查閱。</p>
+                    <label><input type="radio" name="degree10" value="0_0_3_0_0"><span>3</span></label>
+                    <label><input type="radio" name="degree10" value="0_0_2_0_0"><span>2</span></label>
+                    <label><input type="radio" name="degree10" value="0_0_1_0_0"><span>1</span></label>
+                    <label><input type="radio" name="degree10" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟙𝟙 沒有特定喜歡的類別，只要角色夠有魅力都喜歡，特別喜歡人物互動及心理描寫。</p>
+                    <label><input type="radio" name="degree11" value="0_0_0_0_3"><span>3</span></label>
+                    <label><input type="radio" name="degree11" value="0_0_0_0_2"><span>2</span></label>
+                    <label><input type="radio" name="degree11" value="0_0_0_0_1"><span>1</span></label>
+                    <label><input type="radio" name="degree11" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟙𝟚 能閱讀較硬的文字，閱讀的讀物中包含詩詞古文歷史傳記、或是經典文學名著。</p>
+                    <label><input type="radio" name="degree12" value="0_0_0_3_0"><span>3</span></label>
+                    <label><input type="radio" name="degree12" value="0_0_0_2_0"><span>2</span></label>
+                    <label><input type="radio" name="degree12" value="0_0_0_1_0"><span>1</span></label>
+                    <label><input type="radio" name="degree12" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟙𝟛 有些輕視花很多時間經營自己、四處交際的作家。</p>
+                    <label><input type="radio" name="degree13" value="-3_0_0_0_0"><span>3</span></label>
+                    <label><input type="radio" name="degree13" value="-2_0_0_0_0"><span>2</span></label>
+                    <label><input type="radio" name="degree13" value="-1_0_0_0_0"><span>1</span></label>
+                    <label><input type="radio" name="degree13" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟙𝟜 人物僅為劇情服務，過多的心理細節描寫反而會造成劇情節奏拖沓。</p>
+                    <label><input type="radio" name="degree14" value="0_0_0_0_-3"><span>3</span></label>
+                    <label><input type="radio" name="degree14" value="0_0_0_0_-2"><span>2</span></label>
+                    <label><input type="radio" name="degree14" value="0_0_0_0_-1"><span>1</span></label>
+                    <label><input type="radio" name="degree14" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟙𝟝 喜歡突破禁忌或挑戰傳統的題材，可能也喜歡獵奇或恐怖靈異的傳說。</p>
+                    <label><input type="radio" name="degree15" value="0_3_0_0_0"><span>3</span></label>
+                    <label><input type="radio" name="degree15" value="0_2_0_0_0"><span>2</span></label>
+                    <label><input type="radio" name="degree15" value="0_1_0_0_0"><span>1</span></label>
+                    <label><input type="radio" name="degree15" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟙𝟞 講究作品深度，會在作品中探討各種議題。</p>
+                    <label><input type="radio" name="degree16" value="0_0_0_3_0"><span>3</span></label>
+                    <label><input type="radio" name="degree16" value="0_0_0_2_0"><span>2</span></label>
+                    <label><input type="radio" name="degree16" value="0_0_0_1_0"><span>1</span></label>
+                    <label><input type="radio" name="degree16" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟙𝟟 對於架空的故事較難產生共鳴，認為寫實的作品比較親切。</p>
+                    <label><input type="radio" name="degree17" value="0_-3_0_0_0"><span>3</span></label>
+                    <label><input type="radio" name="degree17" value="0_-2_0_0_0"><span>2</span></label>
+                    <label><input type="radio" name="degree17" value="0_-1_0_0_0"><span>1</span></label>
+                    <label><input type="radio" name="degree17" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟙𝟠 經常會考慮要使用什麼樣的手法來營造情境，並運用各種文學技巧來豐富作品的表達。</p>
+                    <label><input type="radio" name="degree18" value="0_0_0_3_0"><span>3</span></label>
+                    <label><input type="radio" name="degree18" value="0_0_0_2_0"><span>2</span></label>
+                    <label><input type="radio" name="degree18" value="0_0_0_1_0"><span>1</span></label>
+                    <label><input type="radio" name="degree18" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟙𝟡 喜歡到處觀察人群，推測人的心理活動及生活背景，甚至將覺得有意思的互動或對話紀錄下來。</p>
+                    <label><input type="radio" name="degree19" value="0_0_2_0_3"><span>3</span></label>
+                    <label><input type="radio" name="degree19" value="0_0_1_0_2"><span>2</span></label>
+                    <label><input type="radio" name="degree19" value="0_0_1_0_1"><span>1</span></label>
+                    <label><input type="radio" name="degree19" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+
+                <div class="question">
+                    <p class="qa">𝟚𝟘 注意到角色小說的市場，會留意角色應該增加的萌點或是粉紅泡泡的互動，以此提高作品的吸引度。</p>
+                    <label><input type="radio" name="degree20" value="3_0_0_0_2"><span>3</span></label>
+                    <label><input type="radio" name="degree20" value="2_0_0_0_1"><span>2</span></label>
+                    <label><input type="radio" name="degree20" value="1_0_0_0_1"><span>1</span></label>
+                    <label><input type="radio" name="degree20" value="0_0_0_0_0"><span>0</span></label>
+                </div>
+            </fieldset>
+
+            <figure class="fig">
+                <figcaption>
+                    <span class="brk" style="color: var(--accent-color); font-weight: bold; font-size: 1.2em;">～還有10題，快寫完囉！～</span>
+                </figcaption>
+                <img src="https://static.penana.com/images/chapter/987740/s7_0g_Banner.jpg" alt="情境配圖" style="box-shadow: 0 0 25px rgba(255,255,255,0.2);">
+            </figure>
+
+            <fieldset>
+                <legend>貳、選擇題</legend>
+                <div class="choice-questions">
+                    <p>𝟙 情境假設，主角在一間空屋的書桌上發現了10年前自己和青梅竹馬的合照，你喜歡哪個接下來的劇情？</p>
+                    <div class="answer">
+                        <label>
+                            <input type="radio" name="degree21" value="0_0_0_3_0">
+                            <span class="option">(A)這一幕是主角內心的精神思辨，空屋應該是小時候的住處的樣子，象徵他童年的心理，既然是空屋，代表主角幼年可能童年可能遭遇什麼，所以記憶有些空洞，而照片的青梅竹馬應是關鍵。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree21" value="3_0_0_0_0">
+                            <span class="option">(B)其實主角做了虧心事，但夜路走多了遇到鬼，他誤打誤撞走進了鬼屋，他很害怕，感覺背後有什麼，結果找到了一張自己和青梅竹馬的童年照，這時照片裡的青梅竹馬臉部發黑，變成死不瞑目的樣子……</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree21" value="0_0_0_0_3">
+                            <span class="option">(C)照片觸發了主角的回憶，讓他沉浸在與青梅竹馬相處的種種回憶之中，回想起兩人曾經毫無保留地分享彼此的心情，彼此間充滿了無邊的信任和默契。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree21" value="0_0_3_0_0">
+                            <span class="option">(D)主角接著開始調查為何空屋裡會有這樣一張合照？他可能在追查某件事，結果在他調查的地點被人放上了自己小時候的照片以示警告，同時主角推測這個威脅者應該也是青梅竹馬認識的人。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree21" value="0_3_0_0_0">
+                            <span class="option">(E)主角其實是一隻山羊，誤闖空屋，發現桌上一群小羊的照片，牠就情不自禁地把照片紙吃了，結果拉肚子。</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="choice-questions">
+                    <p>𝟚 描述失戀感傷時，喜歡以下哪種作為象徵？</p>
+                    <div class="answer">
+                        <label>
+                            <input type="radio" name="degree22" value="2_0_0_0_0">
+                            <span class="option">(A)雨天</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree22" value="0_0_0_0_2">
+                            <span class="option">(B)揉掉的電影票</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree22" value="0_0_2_0_0">
+                            <span class="option">(C)沒電的時鐘</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree22" value="0_2_0_0_0">
+                            <span class="option">(D)充滿鼻涕的魚骨</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree22" value="0_0_0_2_0">
+                            <span class="option">(E)爬滿寒霧的小窗</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="choice-questions">
+                    <p>𝟛 以下哪個敘述最符合你目前筆下最喜歡的作品（如果沒有，就選看過的書中最喜歡的作品）？</p>
+                    <div class="answer">
+                        <label>
+                            <input type="radio" name="degree23" value="5_0_0_0_0">
+                            <span class="option">(A)是熱門題材。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree23" value="0_5_0_0_0">
+                            <span class="option">(B)主打獨創設定。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree23" value="0_0_5_0_0">
+                            <span class="option">(C)設定集的篇幅不亞於正文。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree23" value="0_0_0_5_0">
+                            <span class="option">(D)文學性高，富有想傳達的中心思想。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree23" value="0_0_0_0_5">
+                            <span class="option">(E)角色很有魅力，有魅力到就算只是出場刷牙洗臉也有人愛看。</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="choice-questions">
+                    <p>𝟜  以下哪個敘述最符合你目前筆下第二喜歡的作品（如果沒有，就選看過的書中第二喜歡的作品）？</p>
+                    <div class="answer">
+                        <label>
+                            <input type="radio" name="degree24" value="0_0_0_0_3">
+                            <span class="option">(A)人物情感十分細膩。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree24" value="0_0_3_0_0">
+                            <span class="option">(B)背景設定考究細緻。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree24" value="0_0_0_3_0">
+                            <span class="option">(C)斟字酌句，描寫情境彷彿歷歷在目。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree24" value="3_0_0_0_0">
+                            <span class="option">(D)題材通俗易懂，劇情高潮迭起。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree24" value="0_3_0_0_0">
+                            <span class="option">(E)給人感覺耳目一新。</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="choice-questions">
+                    <p>𝟝 寫字大小：</p>
+                    <div class="answer">
+                        <label>
+                            <input type="radio" name="degree25" value="1_0_0_0_0">
+                            <span class="option">(A)較大</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree25" value="0_1_0_0_0">
+                            <span class="option">(B)有大有小</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree25" value="0_0_0_0_1">
+                            <span class="option">(C)較小</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree25" value="0_0_0_1_0">
+                            <span class="option">(D)剛好，甚至間距差不多</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="choice-questions">
+                    <p>𝟞 手寫「東」字，選最明顯的特色：</p>
+                    <div class="answer">
+                        <label>
+                            <input type="radio" name="degree26" value="1_0_0_0_0">
+                            <span class="option">(A)第一筆的「一」寫很長，比「果」凸出不少</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree26" value="0_0_1_0_0">
+                            <span class="option">(B)右撇子的你撇出去的左撇「/」較長；左撇子的你撇出去的右撇「\」較長</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree26" value="0_0_0_0_1">
+                            <span class="option">(C)右撇子的你撇出去的右撇「\」較長；左撇子的你撇出去的左撇「/」較長</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree26" value="0_1_0_0_0">
+                            <span class="option">(D)字型偏圓</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree26" value="0_0_0_1_0">
+                            <span class="option">(E)以上皆非</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="choice-questions">
+                    <p>𝟟 不靠格線，橫式書寫一行字：</p>
+                    <div class="answer">
+                        <label>
+                            <input type="radio" name="degree27" value="0_1_0_0_0">
+                            <span class="option">(A)越寫越往上偏</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree27" value="0_0_0_1_0">
+                            <span class="option">(B)往右下偏</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree27" value="0_0_1_0_0">
+                            <span class="option">(C)不偏不倚(小幅度偏移可接受)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="choice-questions">
+                    <p>𝟠 不靠隔線，直式書寫一行字：</p>
+                    <div class="answer">
+                        <label>
+                            <input type="radio" name="degree28" value="0_0_0_0_1">
+                            <span class="option">(A)右撇子的你越寫越偏左；左撇子的你越寫越偏右</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree28" value="0_0_1_0_0">
+                            <span class="option">(B)右撇子的你越寫越偏右；左撇子的你越寫越偏左</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree28" value="1_0_0_0_0">
+                            <span class="option">(C)不偏不倚(小幅度偏移可接受)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="choice-questions">
+                    <p>𝟡 字跡特色，選最明顯的特色：</p>
+                    <div class="answer">
+                        <label>
+                            <input type="radio" name="degree29" value="0_0_1_0_0">
+                            <span class="option">(A)一筆一畫、方正</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree29" value="0_0_0_0_1">
+                            <span class="option">(B)筆畫連綿、圓滑</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree29" value="1_0_0_0_0">
+                            <span class="option">(C)筆壓重</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree29" value="0_1_0_0_0">
+                            <span class="option">(D)右撇子的你字型右傾：左撇子的你字型左傾</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree29" value="0_0_0_1_0">
+                            <span class="option">(E)右撇子的你字型左傾：左撇子的你字型右傾</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="choice-questions">
+                    <p>𝟙𝟘 最難以忍受故事有什麼問題，讓你難以看下去？</p>
+                    <div class="answer">
+                        <label>
+                            <input type="radio" name="degree30" value="0_3_0_0_0">
+                            <span class="option">(A)老套沒有新意。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree30" value="0_0_0_3_0">
+                            <span class="option">(B)視角亂換，就算能勉強看懂也毫無文筆可言。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree30" value="0_0_0_3_0">
+                            <span class="option">(C)邏輯令人瘋狂吐槽，智商狂降。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree30" value="0_0_0_0_3">
+                            <span class="option">(D)心理描寫牽強，人物關係進展太過迅速。</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="degree30" value="3_0_0_0_0">
+                            <span class="option">(E)前5000字沒有吸引到你，就不看了。</span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+            
+            <div class="btn-container">
+                <button type="submit">查看特質分析</button>
+            </div>
+        </form>
+
+        <section id="result-section" class="res" style="display: none; margin-top: 50px;">
+            <div class="test-container">
+                <h2 style="color: var(--accent-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px;">創作特質測驗結果</h2>
+                <div class="test-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>紅馳</th>
+                                <th>綠躍</th>
+                                <th>藍行</th>
+                                <th>墨佇</th>
+                                <th>銀倚</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="sred-text">0</td>
+                                <td id="sgreen-text">0</td>
+                                <td id="sblue-text">0</td>
+                                <td id="sblack-text">0</td>
+                                <td id="swhite-text">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="text-align: center; margin: 30px 0; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px;">
+                        <p style="margin:0; font-size:1.1rem;">系統判定，你的創作特質歸屬：</p>
+                        <strong id="top-academy" style="font-size: 2.5em; display:block; margin-top:10px;"></strong>
+                    </div>
+
+                    <div class="test-note" style="border-left: 4px solid var(--accent-color); padding-left: 20px; background: rgba(255,255,255,0.05); padding: 15px;">
+                        <p>※ 選擇最高分的學院進入。</p>
+                        <p>若出現同分情況，請優先選擇喜歡的學院。以下列出各學院最重視的核心屬性：</p>
+                        <ul style="list-style: none; padding-left: 10px;">
+                            <li>🔴 紅馳學院 —— IP 、市場</li>
+                            <li>🟢 綠躍學院 —— 創意、有趣、獵奇</li>
+                            <li>🔵 藍行學院 —— 合理性、邏輯、考究</li>
+                            <li>⚫ 墨佇學院 —— 文學、文筆、技巧</li>
+                            <li>⚪ 銀倚學院 —— 角色、情感、心理</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h1>前往學院解析</h1>
+<nav class="academy-nav">
+    <a href="red.html" target="new" class="res_btn btn-red">紅馳學院</a>
+    <a href="green.html" target="new" class="res_btn btn-green">綠躍學院</a>
+    <a href="blue.html" target="new" class="res_btn btn-blue">藍行學院</a>
+    <a href="black.html" target="new" class="res_btn btn-black">墨佇學院</a>
+    <a href="white.html" target="new" class="res_btn btn-white">銀倚學院</a>
+</nav>
+                
+                <h2 style="margin-top: 50px;">背景資料</h2>
+                <nav class="btn-container">
+                    <a href="about.html" target="new" class="res_btn" style="border-color: #aaa; color: #aaa;">測驗與學院的設計</a>
+                </nav>
+            </div>
+        </section>
+    </div>
     <script src="./calc.js" defer></script>
 </body>
 </html>

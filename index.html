@@ -1,36 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="字命學院：測驗你是哪種作者？找出你的創作特質分類！這份心理測驗是以創作者特質分類為主題，讓你了解自己是哪種創作者型態，從而更深入地認識自己。完成這份心理測驗後，您將會得到一份特質報告，詳細介紹您的寫作風格和創作特質，以及如何進一步發展自己的創作能力。我們相信這份測驗將會對您的創作之路有所幫助，讓您更加自信和有目標地創作出優秀的作品。趕快來參加這份心理測驗，看看您是哪一種創作者類型吧！">
-    <link rel="stylesheet" href="css/csstyle.css" type="text/css">
-    <!--<link rel="icon" href="favicon.ico" type="image/x-icon">-->
-    <title>字命學院【創作特質測驗】你是哪種作者？</title>
+    <meta name="description" content="字命學院：測驗你是哪種作者？找出你的創作特質分類！">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <title>字命學院【創作特質測驗】</title>
+    <style>
+        .fade-in {
+            animation: fadeIn 1.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .index_list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+        .index_list li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div class="index">
-        <h1>特質測驗</h1>
-        <div class="index">
-            <figure class="fig">
-                <img src="img/index.jpg" alt="特質測驗圖片" />
-            </figure>
-            <div class="index_desc">
-                <p>親愛的新生你好，我是你的學校──瑪臨，歡迎你的到來。</p>
-                <p>為了更了解你的創作風格，在此為你準備了一份特質測驗。</p>
-                <p>測驗分為兩大題：</p>
-                <ul class="index_list">
-                    <li>第一大題是20道偏好程度的程度題，測試你對於創作元素的喜好程度，包括角色、故事情節、世界觀等方面。</li>
-                    <li>第二大題是10道選擇題，測試你在具體情境下的選擇傾向，例如在創作中選擇角色的性格特徵、情節的發展方向等等。</li>
+<ul class="bg-squares">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+    <div class="container fade-in">
+        <h1>特質測驗系統</h1>
+        
+        <figure class="fig">
+            <img src="img/index.jpg" alt="特質測驗圖片" style="max-height: 350px; object-fit: cover; width: 100%; border-bottom: 3px solid var(--accent-color);">
+        </figure>
+
+        <div class="index_desc">
+            <p style="font-size: 1.2rem; text-align: center; color: var(--accent-color);">親愛的新生你好，我是你的學校──瑪臨。</p>
+            <p>為了更了解你的創作風格，系統已為你準備了一份特質測驗。</p>
+            
+            <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin: 25px 0;">
+                <p style="margin-top:0; font-weight:bold; color:#fff;">測驗程序：</p>
+                <ul class="index_list" style="list-style: none; padding: 0;">
+                    <li><strong>第一階段 (程度題)：</strong> 20道題目，測試你對創作元素（角色、情節、世界觀）的共鳴強度。</li>
+                    <li><strong>第二階段 (情境題)：</strong> 10道選擇，模擬創作中的具體抉擇。</li>
                 </ul>
-                <p>透過這兩大題的測試，我們可以全面地了解你在創作中的偏好和傾向，了解你是否注重角色心理描寫和互動，是否偏向於挑戰現有的文學模式和風格，是否有商業頭腦和市場敏銳度等等。</p>
-                <p>藉此，你可以更好地了解自己的偏好和特質，並且更準確地選擇自己感興趣的學院。</p>
-                <p>Good luck！</p>
             </div>
-            <a href="author-quiz.html" class="index_button">開始測驗</a>
-            </form>
+
+            <p>分析完成後，系統將導航至最適合你的學院。</p>
+            <p style="text-align: center; margin-top: 30px; letter-spacing: 3px; font-weight: bold; opacity: 0.8;">// GOOD LUCK //</p>
         </div>
+
+        <div class="btn-container">
+            <a href="author-quiz.html" class="index_button">開始測驗</a>
+        </div>
+    </div>
 </body>
 </html>
-
-
