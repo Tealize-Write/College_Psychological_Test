@@ -1,3 +1,5 @@
+// calc.js - 最終優化版 (含自動存檔與模組化邏輯)
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- 設定區 ---
     const CONFIG = {
@@ -9,32 +11,26 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: "墨佇學院", id: "sblack-text" },
             { name: "銀倚學院", id: "swhite-text" }
         ],
-        // 在瀏覽器中儲存資料的鑰匙名稱
+        // 存檔用的 Key
         storageKey: "author_quiz_progress_v1" 
     };
 
     const form = document.getElementById("quiz-form");
     if (!form) return;
 
-    // --- 1. 初始化：一進來就嘗試讀取上次的紀錄 ---
+    // 1. 嘗試讀取進度 (自動填入上次的答案)
     loadProgress();
 
-    // --- 2. 事件監聽 ---
-    
-    // 當表單有任何變動（使用者選了選項），就立刻存檔
-    form.addEventListener('change', () => {
-        saveProgress();
-    });
+    // 2. 監聽變動 (一選就存)
+    form.addEventListener('change', saveProgress);
 
-    // 送出表單的處理
+    // 3. 監聽送出
     form.addEventListener('submit', handleFormSubmit);
-
 
     // --- 主邏輯 ---
     function handleFormSubmit(event) {
         event.preventDefault();
 
-        // 驗證是否有未填項目
         const unanswered = checkUnanswered();
 
         if (unanswered.length > 0) {
@@ -43,25 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 計算並顯示結果
         const scores = calculateScores();
         displayResults(scores);
-        
-        // 備註：因為使用者可能想修改答案再看結果，所以這裡「不」自動清空紀錄。
-        // 如果你希望送出後就清空，可以把下面這行的註解拿掉：
+        // 如果想在送出後清空紀錄，可 uncomment 下一行
         // localStorage.removeItem(CONFIG.storageKey);
     }
 
-    // --- 新增功能：儲存與讀取 ---
-
+    // --- 存檔與讀取 ---
     function saveProgress() {
         const formData = new FormData(form);
         const data = {};
-        // 把所有選中的答案轉成物件 (例如: {degree1: "2_3_0_0_0", ...})
         for (const [key, value] of formData.entries()) {
             data[key] = value;
         }
-        // 存入 localStorage (轉成字串)
         localStorage.setItem(CONFIG.storageKey, JSON.stringify(data));
     }
 
@@ -70,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (saved) {
             try {
                 const data = JSON.parse(saved);
-                // 遍歷存檔資料，把對應的選項打勾
                 for (const [key, value] of Object.entries(data)) {
+                    // 找到對應的 input 並勾選
                     const input = form.querySelector(`input[name="${key}"][value="${value}"]`);
                     if (input) input.checked = true;
                 }
@@ -81,8 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 輔助函式 (保持原本邏輯) ---
-
+    // --- 輔助邏輯 ---
     function checkUnanswered() {
         const missing = [];
         for (let i = 1; i <= CONFIG.totalQuestions; i++) {
@@ -96,11 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function alertUnanswered(unanswered) {
         const part1 = unanswered.filter(n => n <= 20);
         const part2 = unanswered.filter(n => n > 20).map(n => n - 20);
-
         let msg = "還有題目沒有完成喔！\n";
         if (part1.length) msg += `\n第一大題：${part1.join(", ")}`;
         if (part2.length) msg += `\n第二大題：${part2.join(", ")}`;
-
         alert(msg);
     }
 
@@ -114,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function calculateScores() {
         const scores = new Array(CONFIG.academies.length).fill(0);
-
         for (let i = 1; i <= CONFIG.totalQuestions; i++) {
             const selected = form.querySelector(`input[name="degree${i}"]:checked`);
             if (selected) {
@@ -128,24 +114,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayResults(scores) {
-        // 填入表格分數
+        // 填入表格
         CONFIG.academies.forEach((academy, index) => {
             const el = document.getElementById(academy.id);
             if (el) el.innerText = scores[index];
         });
 
-        // 找出最高分學院
+        // 找出最高分
         const maxScore = Math.max(...scores);
         const topAcademyNames = CONFIG.academies
             .filter((_, index) => scores[index] === maxScore)
             .map(a => a.name);
 
+        // 顯示最高分學院名稱
         const topAcademyEl = document.getElementById("top-academy");
         if (topAcademyEl) {
             topAcademyEl.innerText = topAcademyNames.join(" & ");
         }
 
-        // 顯示結果區塊並滑動
+        // 顯示結果區塊
         const resultSection = document.getElementById("result-section");
         if (resultSection) {
             resultSection.style.display = "block";
