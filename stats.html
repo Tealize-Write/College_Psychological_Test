@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>字命學院 — 學院人數統計</title>
+  </head>
+  <body>
+    <ul class="bg-squares">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <div class="container fade-in">
+      <h1
+        id="stats-title"
+        style="text-align: center; color: var(--accent-color)"
+      >
+        全員學院分布統計
+      </h1>
+
+      <p
+        id="stats-loading"
+        style="text-align: center; color: var(--text-secondary)"
+      >
+        載入資料中…
+      </p>
+      <p
+        id="stats-error"
+        style="display: none; text-align: center; color: #ff5c5c"
+      ></p>
+
+      <!-- 總人數 -->
+      <p class="stats-meta" id="stats-total"></p>
+
+      <!-- 圓餅圖 -->
+      <h3
+        id="donut-title"
+        style="text-align: center; color: var(--accent-color); display: none"
+      >
+        學院人數比例
+      </h3>
+      <div class="stats-chart-wrap" id="donut-wrap" style="display: none">
+        <canvas id="donut-chart"></canvas>
+      </div>
+
+      <!-- 長條圖（絕對人數） -->
+      <h3
+        id="bar-title"
+        style="text-align: center; color: var(--accent-color); display: none"
+      >
+        各學院人數
+      </h3>
+      <div class="stats-chart-wrap" id="bar-wrap" style="display: none">
+        <canvas id="bar-chart"></canvas>
+      </div>
+
+      <div class="btn-container" style="margin-top: 40px">
+        <a
+          href="index.html?page=quiz"
+          class="index_button"
+          data-i18n-key="navQuiz"
+          >去測驗</a
+        >
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/translation.js"></script>
+    <script>
+      // ── GAS 設定（使用共享 config） ───────────────────────────────────────
+      const GAS_STATS_URL = GAS_URL;
+
+      const ACADEMY_COLORS = {
+        red: "#ff5c5c",
+        green: "#a3ff00",
+        blue: "#00eaff",
+        black: "#ffffff",
+        white: "#e9c86c",
+      };
+      const ACADEMY_KEYS = ["red", "green", "blue", "black", "white"];
+
+      let donutChart = null;
+      let barChart = null;
+
+      document.addEventListener("DOMContentLoaded", loadStats);
+      document.addEventListener("langChanged", () => {
+        // 重建標籤（重新 fetch 太重，直接更新現有 chart 的 labels）
+        if (donutChart || barChart) loadStats();
+      });
+
+      function getNames() {
+        return UI_TRANSLATIONS[window.currentLang || "zh-TW"].academyNames;
+      }
+
+      async function loadStats() {
+        const loadingEl = document.getElementById("stats-loading");
+        const errorEl = document.getElementById("stats-error");
+
+        // GAS URL 未設定 → 顯示提示
+        if (!GAS_STATS_URL || GAS_STATS_URL === "YOUR_GAS_WEB_APP_URL_HERE") {
+          loadingEl.style.display = "none";
+          errorEl.style.display = "";
+          errorEl.innerHTML =
+            "⚠️ GAS 尚未部署。請先在 <code>calc.js</code> 和 <code>stats.html</code> 中填入 GAS Web App URL。";
+          return;
+        }
+
+        try {
+          loadingEl.style.display = "";
+          errorEl.style.display = "none";
+
+          const res = await fetch(GAS_STATS_URL);
+          const json = await res.json();
+          // 預期格式：{ counts: { red:12, green:8, blue:5, black:3, white:7 }, total: 35 }
+          renderCharts(json.counts, json.total);
+          loadingEl.style.display = "none";
+        } catch (e) {
+          loadingEl.style.display = "none";
+          errorEl.style.display = "";
+          errorEl.textContent =
+            "資料載入失敗，請確認 GAS 已正確部署並允許外部存取。";
+        }
+      }
+
+      function renderCharts(counts, total) {
+        const names = getNames();
+        const labels = ACADEMY_KEYS.map((k) => names[k]);
+        const data = ACADEMY_KEYS.map((k) => counts[k] || 0);
+        const colors = ACADEMY_KEYS.map((k) => ACADEMY_COLORS[k]);
+
+        document.getElementById("stats-total").textContent =
+          (window.currentLang === "en"
+            ? "Total participants: "
+            : "總參與人數：") + (total || data.reduce((a, b) => a + b, 0));
+
+        // ── 圓餅圖 ──────────────────────────────────────────────────────────
+        document.getElementById("donut-title").style.display = "";
+        document.getElementById("donut-wrap").style.display = "";
+        const dCtx = document.getElementById("donut-chart");
+
+        if (donutChart) donutChart.destroy();
+        donutChart = new Chart(dCtx, {
+          type: "doughnut",
+          data: {
+            labels,
+            datasets: [
+              {
+                data,
+                backgroundColor: colors.map((c) => c + "cc"),
+                borderColor: colors,
+                borderWidth: 2,
+                hoverOffset: 12,
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: { color: "#e7e5e4", padding: 16, font: { size: 13 } },
+              },
+              tooltip: {
+                callbacks: {
+                  label: (ctx) => {
+                    const val = ctx.parsed;
+                    const pct = total ? ((val / total) * 100).toFixed(1) : 0;
+                    return ` ${val} 人 (${pct}%)`;
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        // ── 水平長條圖 ───────────────────────────────────────────────────────
+        document.getElementById("bar-title").style.display = "";
+        document.getElementById("bar-wrap").style.display = "";
+        const bCtx = document.getElementById("bar-chart");
+
+        if (barChart) barChart.destroy();
+        barChart = new Chart(bCtx, {
+          type: "bar",
+          data: {
+            labels,
+            datasets: [
+              {
+                data,
+                backgroundColor: colors.map((c) => c + "bb"),
+                borderColor: colors,
+                borderWidth: 2,
+                borderRadius: 6,
+              },
+            ],
+          },
+          options: {
+            indexAxis: "y",
+            plugins: { legend: { display: false } },
+            scales: {
+              x: {
+                ticks: { color: "#e7e5e4", stepSize: 1 },
+                grid: { color: "rgba(255,255,255,0.08)" },
+              },
+              y: {
+                ticks: { color: "#E6C288", font: { weight: "bold" } },
+                grid: { display: false },
+              },
+            },
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

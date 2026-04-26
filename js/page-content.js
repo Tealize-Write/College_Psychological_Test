@@ -1,0 +1,71 @@
+// Shared page content renderer for index, quiz, and result shells.
+(function renderPageContent() {
+  const root = document.getElementById("page-root");
+  if (!root) return;
+
+  const mode = new URLSearchParams(window.location.search).get("page");
+  const page = mode || document.body.getAttribute("data-page") || "index";
+  const templates = {
+    index: `
+      <div class="fade-in">
+        <h1 data-i18n-key="pageTitle" style="font-size:1.6rem;"></h1>
+
+        <figure class="fig">
+          <img src="img/index.jpg" alt="特質測驗圖片"
+               style="max-height:350px; object-fit:cover; width:100%; border-bottom:3px solid var(--accent-color);">
+        </figure>
+
+        <div class="index_desc">
+          <p style="font-size:1.2rem; text-align:center; color:var(--accent-color);">
+            親愛的新生你好，我是你的學校──瑪臨。
+          </p>
+          <p>為了更了解你的創作風格，系統已為你準備了一份特質測驗。</p>
+
+          <div style="background:rgba(0,0,0,0.3); padding:25px; border-radius:12px;
+                      border:1px solid rgba(255,255,255,0.05); margin:25px 0;">
+            <p style="margin-top:0; font-weight:bold; color:#fff;">測驗程序：</p>
+            <ul style="list-style:none; padding:0; margin:0;">
+              <li style="margin-bottom:10px;">▸ <strong>第一階段（程度題）：</strong>20 道題目，測試你對創作元素的共鳴強度。</li>
+              <li>▸ <strong>第二階段（選擇題）：</strong>10 道情境選擇，模擬創作中的具體抉擇。</li>
+            </ul>
+          </div>
+
+          <p>分析完成後，系統將呈現你最適合的學院及各項分數光譜。</p>
+          <p style="text-align:center; margin-top:30px; letter-spacing:3px; font-weight:bold; opacity:0.8;">// GOOD LUCK //</p>
+        </div>
+
+        <div class="btn-container">
+          <a href="index.html?page=quiz" class="index_button" data-i18n-key="startQuizBtn">開始測驗</a>
+        </div>
+      </div>
+    `,
+
+    quiz: `
+      <div id="quiz-wrap">
+        <div id="progress-area" style="display:none;">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+          </div>
+          <p class="progress-text" id="progress-text"></p>
+        </div>
+
+        <div id="section-card" style="display:none;" class="quiz-section-card">
+          <div class="section-card-body">
+            <span class="section-badge" id="section-badge"></span>
+            <h2 class="section-label" id="section-label"></h2>
+            <p class="section-desc" id="section-desc"></p>
+          </div>
+        </div>
+
+        <div id="question-card" style="display:none;" class="fade-in">
+          <p id="question-text" class="qa"></p>
+          <div id="options-container"></div>
+        </div>
+      </div>
+    `,
+
+    result: '<div id="result-wrap"></div>',
+  };
+
+  if (templates[page]) root.innerHTML = templates[page];
+})();
