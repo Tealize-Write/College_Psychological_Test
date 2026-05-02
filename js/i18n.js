@@ -11,7 +11,7 @@ window.UI_TRANSLATIONS = {
     part1Label: "壹、程度題",
     part1Desc: "請選擇符合程度（3：完全符合 → 0：沒有）",
     part2Label: "貳、選擇題",
-    part2Transition: "還有 10 題，快寫完囉！",
+    part2Transition: "快寫完囉！",
     progressText: "第 {cur} 題 / 共 {total} 題",
     opt3: "3（完全符合）",
     opt2: "2（大致符合）",
@@ -64,7 +64,7 @@ window.UI_TRANSLATIONS = {
     part1Desc:
       "Rate how well each statement describes you (3 = Perfectly, 0 = Not at all)",
     part2Label: "Part II — Choice Questions",
-    part2Transition: "10 more questions — you're almost there!",
+    part2Transition: "you're almost there!",
     progressText: "Question {cur} / {total}",
     opt3: "3 (Perfectly)",
     opt2: "2 (Mostly)",
