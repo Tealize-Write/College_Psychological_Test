@@ -1,5 +1,9 @@
 /* style.css - 終極美化版 (流金質感 + 深度玻璃擬態 + 互動優化) */
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* 1. 基礎設定 & 捲軸優化 */
 *,
 *::before,
@@ -58,6 +62,7 @@
   /* 玻璃邊框：上方亮、下方暗，模擬光照 */
   --border-glass: 1px solid rgba(255, 230, 180, 0.15);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease;
 }
 
 /* --- 全局設定 --- */
@@ -107,7 +112,8 @@ body {
 }
 
 /* 頂部裝飾光條 */
-.container::before {
+.container::before,
+.res::before {
   content: "";
   position: absolute;
   top: 0;
@@ -131,8 +137,9 @@ h2,
   color: var(--accent-color);
   text-align: center;
   margin-bottom: 2rem;
-  font-weight: 400; /* 稍微減輕字重，更有現代感 */
-  letter-spacing: 0.1em; /* 增加字距 */
+  font-weight: 400;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  letter-spacing: 0.1em;
   text-shadow: 0 0 20px var(--accent-glow);
 }
 
@@ -737,6 +744,19 @@ body:has(.top-nav) #quiz-wrap {
   border-radius: 3px;
   transition: width 0.4s ease;
   box-shadow: 0 0 8px var(--accent-glow);
+  position: relative;
+  overflow: hidden;
+}
+.progress-bar-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+  animation: shimmer 2s ease-in-out infinite;
+}
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(250%); }
 }
 .progress-text {
   text-align: right;
@@ -794,8 +814,7 @@ body:has(.top-nav) #quiz-wrap {
   background: rgba(230, 194, 136, 0.08);
   color: #fff;
   border-color: var(--accent-color);
-  border-left-width: 4px;
-  padding-left: 28px;
+  box-shadow: inset 4px 0 0 var(--accent-color);
   transform: none;
 }
 .quiz-option-btn.selected {
@@ -884,23 +903,23 @@ body:has(.top-nav) #quiz-wrap {
   color: var(--text-secondary);
 }
 .result-winner-name {
-  font-size: 2.6em;
+  font-size: clamp(2rem, 6vw, 2.8em);
   display: block;
   margin-top: 10px;
-  color: var(--accent-color);
-  text-shadow: 0 0 30px var(--accent-glow);
-  animation: winnerPulse 2.5s ease-in-out infinite;
+  background: linear-gradient(135deg, var(--accent-color) 0%, #fff 50%, var(--accent-color) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: winnerShimmer 3s ease-in-out infinite, winnerPulse 2.5s ease-in-out infinite;
+}
+@keyframes winnerShimmer {
+  0%, 100% { background-position: 0% center; }
+  50%       { background-position: 100% center; }
 }
 @keyframes winnerPulse {
-  0%,
-  100% {
-    text-shadow: 0 0 20px var(--accent-glow);
-  }
-  50% {
-    text-shadow:
-      0 0 50px var(--accent-glow),
-      0 0 80px var(--accent-glow);
-  }
+  0%, 100% { filter: drop-shadow(0 0 12px var(--accent-glow)); }
+  50%       { filter: drop-shadow(0 0 40px var(--accent-glow)); }
 }
 
 .result-chart-title {
@@ -973,6 +992,17 @@ body:has(.top-nav) #quiz-wrap {
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: barItemIn 0.4s ease forwards;
+}
+.academy-book-item:nth-child(1) { animation-delay:   0ms; }
+.academy-book-item:nth-child(2) { animation-delay:  80ms; }
+.academy-book-item:nth-child(3) { animation-delay: 160ms; }
+.academy-book-item:nth-child(4) { animation-delay: 240ms; }
+.academy-book-item:nth-child(5) { animation-delay: 320ms; }
+@keyframes barItemIn {
+  to { opacity: 1; transform: none; }
 }
 .academy-book-item:last-child {
   margin-bottom: 0;
@@ -981,17 +1011,25 @@ body:has(.top-nav) #quiz-wrap {
   color: #fff;
   text-shadow: 0 0 10px var(--accent-glow);
 }
+.academy-book-item.is-top .academy-book-bar {
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.06);
+}
+.academy-book-item.is-top .academy-book-fill {
+  filter: brightness(1.18);
+}
 
 .academy-book-label {
   color: var(--text-secondary);
   font-weight: 700;
   letter-spacing: 1px;
+  font-size: 0.9rem;
 }
 
 .academy-book-bar {
   height: 26px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
   position: relative;
@@ -999,16 +1037,33 @@ body:has(.top-nav) #quiz-wrap {
 .academy-book-fill {
   display: block;
   height: 100%;
-  border-right: 2px solid rgba(255, 255, 255, 0.45);
+  border-right: 2px solid rgba(255, 255, 255, 0.4);
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
-  transition: width 0.45s ease;
+  transition: width 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+.academy-book-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 2.5s ease-in-out infinite;
 }
 
 .academy-book-score {
   text-align: right;
   color: #f5f5f4;
   font-weight: 700;
+  font-size: 0.9rem;
+  opacity: 0;
+  animation: barItemIn 0.3s ease forwards;
 }
+.academy-book-item:nth-child(1) .academy-book-score { animation-delay:  430ms; }
+.academy-book-item:nth-child(2) .academy-book-score { animation-delay:  510ms; }
+.academy-book-item:nth-child(3) .academy-book-score { animation-delay:  590ms; }
+.academy-book-item:nth-child(4) .academy-book-score { animation-delay:  670ms; }
+.academy-book-item:nth-child(5) .academy-book-score { animation-delay:  750ms; }
 
 .academy-bookshelf-empty {
   margin: 0;
@@ -1098,19 +1153,41 @@ body:has(.top-nav) #quiz-wrap {
   margin-bottom: 20px;
 }
 
-/* ── 行動裝置微調 ────────────────────────────────────────────────────── */
+/* ── focus-visible 無障礙樣式 ────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+button:focus-visible,
+.lang-btn:focus-visible,
+.quiz-option-btn:focus-visible,
+.res_btn:focus-visible,
+.index_button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* ── 行動裝置微調 ────────��────────────────────────────���──────────────── */
 @media (max-width: 600px) {
+  body {
+    padding: 0;
+  }
+  .container,
+  .res {
+    margin: 0 auto;
+    border-radius: 0;
+    padding: 20px 16px;
+  }
   .top-nav .nav-links {
     gap: 12px;
     font-size: 0.85rem;
   }
   body:has(.top-nav) .container,
   body:has(.top-nav) #quiz-wrap {
-    margin-top: 70px;
-    padding: 20px;
-  }
-  .result-winner-name {
-    font-size: 2em;
+    margin-top: 64px;
+    padding: 20px 16px;
   }
   .academy-book-item {
     grid-template-columns: 56px 1fr 34px;
@@ -1125,5 +1202,14 @@ body:has(.top-nav) #quiz-wrap {
   }
   .action-card {
     min-height: 58px;
+  }
+}
+
+/* ── prefers-reduced-motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
