@@ -383,98 +383,24 @@ function renderContent(key) {
     window.location.href = "index.html";
   };
 
-  const aboutLink = el("a", {
-    href: "about.html",
-    className: "res_btn action-card",
-    target: "_blank",
+  const LINK_DEFS = [
+    { href: "https://www.penana.com/story/16766/",                text: "從Penana入學",         row: row1 },
+    { href: "https://www.kadokado.com.tw/book/1425",              text: "從KadoKado入學",       row: row1 },
+    { href: "https://cxc.today/zh/store/ApatiteBlue/work/20217", text: "從CXC入學",            row: row1 },
+    { href: "https://www.facebook.com/TealizeWrite/",            text: "從FB找學校創辦人",     row: row2 },
+    { href: "https://www.instagram.com/tealize_write/",          text: "從IG找學校創辦人",     row: row2 },
+    { href: "https://www.plurk.com/Tealize",                     text: "從Plurk找學校創辦人", row: row2 },
+    { href: "about.html",                       i18nKey: "aboutLinkText", text: "測驗與學院設計",     row: row3 },
+    { href: "https://tealize-write.github.io/", i18nKey: "creatorBase",   text: "學校創辦人的基地", row: row3 },
+  ];
+
+  LINK_DEFS.forEach(({ href, text, i18nKey, row }) => {
+    const link = el("a", { href, className: "res_btn action-card", target: "_blank" });
+    if (i18nKey) link.setAttribute("data-i18n-key", i18nKey);
+    else link.textContent = text;
+    bindTrackedLink(link, text, key);
+    row.appendChild(link);
   });
-  aboutLink.setAttribute("data-i18n-key", "aboutLinkText");
-  bindTrackedLink(aboutLink, "測驗與學院設計", key);
-
-  const penanaLink = el(
-    "a",
-    {
-      href: "https://www.penana.com/story/16766/",
-      className: "res_btn action-card",
-      target: "_blank",
-    },
-    "從Penana入學",
-  );
-  bindTrackedLink(penanaLink, "從Penana入學", key);
-
-  const kadoLink = el(
-    "a",
-    {
-      href: "https://www.kadokado.com.tw/book/1425",
-      className: "res_btn action-card",
-      target: "_blank",
-    },
-    "從KadoKado入學",
-  );
-  bindTrackedLink(kadoLink, "從KadoKado入學", key);
-
-  const cxcLink = el(
-    "a",
-    {
-      href: "https://cxc.today/zh/store/ApatiteBlue/work/20217",
-      className: "res_btn action-card",
-      target: "_blank",
-    },
-    "從CXC入學",
-  );
-  bindTrackedLink(cxcLink, "從CXC入學", key);
-
-  const fbLink = el(
-    "a",
-    {
-      href: "https://www.facebook.com/TealizeWrite/",
-      className: "res_btn action-card",
-      target: "_blank",
-    },
-    "從FB找學校創辦人",
-  );
-  bindTrackedLink(fbLink, "從FB找學校創辦人", key);
-
-  const igLink = el(
-    "a",
-    {
-      href: "https://www.instagram.com/tealize_write/",
-      className: "res_btn action-card",
-      target: "_blank",
-    },
-    "從IG找學校創辦人",
-  );
-  bindTrackedLink(igLink, "從IG找學校創辦人", key);
-
-  const plurkLink = el(
-    "a",
-    {
-      href: "https://www.plurk.com/Tealize",
-      className: "res_btn action-card",
-      target: "_blank",
-    },
-    "從Plurk找學校創辦人",
-  );
-  bindTrackedLink(plurkLink, "從Plurk找學校創辦人", key);
-
-  const creatorLink = el("a", {
-    href: "https://tealize-write.github.io/",
-    className: "res_btn action-card",
-    target: "_blank",
-  });
-  creatorLink.setAttribute("data-i18n-key", "creatorBase");
-  bindTrackedLink(creatorLink, "學校創辦人的基地", key);
-
-  row1.appendChild(penanaLink);
-  row1.appendChild(kadoLink);
-  row1.appendChild(cxcLink);
-
-  row2.appendChild(fbLink);
-  row2.appendChild(igLink);
-  row2.appendChild(plurkLink);
-
-  row3.appendChild(aboutLink);
-  row3.appendChild(creatorLink);
 
   row4.appendChild(retakeBtn);
 
@@ -536,19 +462,16 @@ function readLatestScores() {
 }
 
 function postActionLog(action, keyword, timeSpent = 0) {
-  if (!GAS_URL || GAS_URL === "YOUR_GAS_WEB_APP_URL_HERE") return;
-  const location =
-    typeof getLocationPayload === "function"
-      ? getLocationPayload()
-      : { country: "", city: "" };
+  if (!GAS_URL || GAS_URL.startsWith("__")) return;
+  const location = getLocationPayload();
   const payload = {
     timestamp: new Date().toISOString(),
-    clientId: typeof getClientId === "function" ? getClientId() : "",
+    clientId: getClientId(),
     keyword: keyword || "",
     action,
-    source: typeof getTrafficSource === "function" ? getTrafficSource() : "",
+    source: getTrafficSource(),
     referrer: document.referrer || "",
-    device: typeof getDeviceType === "function" ? getDeviceType() : "",
+    device: getDeviceType(),
     country: location.country,
     city: location.city,
     timeSpent: Number(timeSpent) || 0,
@@ -589,7 +512,7 @@ async function loadGlobalAcademyStats(activeKey) {
   const shelf = document.getElementById("academyGlobalBookShelf");
   if (!shelf) return;
 
-  if (!GAS_URL || GAS_URL === "YOUR_GAS_WEB_APP_URL_HERE") {
+  if (!GAS_URL || GAS_URL.startsWith("__")) {
     shelf.innerHTML = "";
     shelf.appendChild(
       el(
@@ -619,98 +542,56 @@ async function loadGlobalAcademyStats(activeKey) {
   }
 }
 
+function renderBarShelf(shelf, values, activeKey) {
+  shelf.innerHTML = "";
+  const names = window.UI_TRANSLATIONS[window.currentLang].academyNames;
+  const max = Math.max(...values, 1);
+  ACADEMY_ORDER.forEach((key, idx) => {
+    const v = values[idx];
+    const ratio = Math.max(8, Math.round((v / max) * 100));
+    const row = el("div", { className: `academy-book-item${key === activeKey ? " is-top" : ""}` });
+    const bar = el("div", { className: "academy-book-bar" });
+    const fill = el("span", { className: "academy-book-fill" });
+    fill.style.width = `${ratio}%`;
+    fill.style.background = ACADEMY_COLORS[key];
+    bar.appendChild(fill);
+    row.appendChild(el("span", { className: "academy-book-label" }, names[key]));
+    row.appendChild(bar);
+    row.appendChild(el("span", { className: "academy-book-score" }, String(v)));
+    shelf.appendChild(row);
+  });
+}
+
 function renderGlobalAcademyStats(counts, activeKey, total) {
   const shelf = document.getElementById("academyGlobalBookShelf");
   const totalEl = document.getElementById("academyGlobalStatsTotal");
   if (!shelf || !totalEl) return;
 
-  shelf.innerHTML = "";
-
   if (!counts) {
     totalEl.textContent = "";
-    shelf.appendChild(
-      el("p", { className: "academy-bookshelf-empty" }, "暫無全體統計資料。"),
-    );
+    shelf.innerHTML = "";
+    shelf.appendChild(el("p", { className: "academy-bookshelf-empty" }, "暫無全體統計資料。"));
     return;
   }
 
-  const names = window.UI_TRANSLATIONS[window.currentLang].academyNames;
-  const rows = ACADEMY_ORDER.map((k) => Number(counts[k]) || 0);
-  const maxCount = Math.max(...rows, 1);
-  const totalText =
+  const values = ACADEMY_ORDER.map((k) => Number(counts[k]) || 0);
+  totalEl.textContent =
     (window.currentLang === "en" ? "Total participants: " : "總參與人數：") +
-    (total || rows.reduce((a, b) => a + b, 0));
-  totalEl.textContent = totalText;
-
-  ACADEMY_ORDER.forEach((key, idx) => {
-    const count = rows[idx];
-    const ratio = Math.max(8, Math.round((count / maxCount) * 100));
-
-    const row = el("div", {
-      className: `academy-book-item${key === activeKey ? " is-top" : ""}`,
-    });
-    const label = el("span", { className: "academy-book-label" }, names[key]);
-    const bar = el("div", { className: "academy-book-bar" });
-    const fill = el("span", { className: "academy-book-fill" });
-    fill.style.width = `${ratio}%`;
-    fill.style.background = ACADEMY_COLORS[key];
-    const value = el(
-      "span",
-      { className: "academy-book-score" },
-      String(count),
-    );
-
-    bar.appendChild(fill);
-    row.appendChild(label);
-    row.appendChild(bar);
-    row.appendChild(value);
-    shelf.appendChild(row);
-  });
+    (total || values.reduce((a, b) => a + b, 0));
+  renderBarShelf(shelf, values, activeKey);
 }
 
 function renderAcademyBookshelf(scoreList, activeKey) {
   const shelf = document.getElementById("academyBookShelf");
   if (!shelf) return;
 
-  shelf.innerHTML = "";
-
   if (!scoreList) {
-    const empty = el(
-      "p",
-      { className: "academy-bookshelf-empty" },
-      "請先完成測驗，即可顯示五學院分數。",
-    );
-    shelf.appendChild(empty);
+    shelf.innerHTML = "";
+    shelf.appendChild(el("p", { className: "academy-bookshelf-empty" }, "請先完成測驗，即可顯示五學院分數。"));
     return;
   }
 
-  const names = window.UI_TRANSLATIONS[window.currentLang].academyNames;
-  const maxScore = Math.max(...scoreList, 1);
-
-  ACADEMY_ORDER.forEach((key, idx) => {
-    const score = scoreList[idx];
-    const ratio = Math.max(8, Math.round((score / maxScore) * 100));
-
-    const row = el("div", {
-      className: `academy-book-item${key === activeKey ? " is-top" : ""}`,
-    });
-    const label = el("span", { className: "academy-book-label" }, names[key]);
-    const bar = el("div", { className: "academy-book-bar" });
-    const fill = el("span", { className: "academy-book-fill" });
-    fill.style.width = `${ratio}%`;
-    fill.style.background = ACADEMY_COLORS[key];
-    const value = el(
-      "span",
-      { className: "academy-book-score" },
-      String(score),
-    );
-
-    bar.appendChild(fill);
-    row.appendChild(label);
-    row.appendChild(bar);
-    row.appendChild(value);
-    shelf.appendChild(row);
-  });
+  renderBarShelf(shelf, scoreList, activeKey);
 }
 
 // ── 建立 DOM 元素的小工具 ───────────────────────────────────────────────────

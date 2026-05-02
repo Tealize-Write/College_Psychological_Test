@@ -3,17 +3,16 @@
 
 // ── 學院定義（index 對應 scores 陣列位置） ───────────────────────────────
 const ACADEMIES = [
-  { key: "red", color: "#ff5c5c" },
-  { key: "green", color: "#a3ff00" },
-  { key: "blue", color: "#00eaff" },
-  { key: "black", color: "#ffffff" },
-  { key: "white", color: "#e9c86c" },
+  { key: "red" },
+  { key: "green" },
+  { key: "blue" },
+  { key: "black" },
+  { key: "white" },
 ];
 
 // ── 狀態 ──────────────────────────────────────────────────────────────────
 let scores = [0, 0, 0, 0, 0]; // [red, green, blue, black, white]
 let qIndex = 0;
-let phase = "quiz";
 let answerHistory = []; // 每題記錄玩家選了哪一個 option index
 window.quizStartTime = 0; // 記錄測驗開始時間（用於計算 timeSpent）
 
@@ -53,13 +52,12 @@ function updateSectionHeader() {
 }
 
 function startQuiz() {
-  phase = "quiz";
   qIndex = 0;
   scores = [0, 0, 0, 0, 0];
   answerHistory = [];
   window.quizStartTime = Date.now();
   // GAS 暖機：趁玩家答題期間預先喚醒 GAS 實例，消除結果頁的冷啟動延遲
-  if (typeof GAS_URL !== "undefined" && GAS_URL) {
+  if (GAS_URL && !GAS_URL.startsWith("__")) {
     fetch(GAS_URL, { keepalive: true }).catch(() => {});
   }
   show(progressArea, sectionCard, questionCard);
@@ -165,22 +163,19 @@ function showResult() {
 
 // ── GAS 提交 ──────────────────────────────────────────────────────────────
 function submitToGAS(scoreArr, topKey) {
-  if (!GAS_URL || GAS_URL === "YOUR_GAS_WEB_APP_URL_HERE") return;
+  if (!GAS_URL || GAS_URL.startsWith("__")) return;
   const timeSpent = window.quizStartTime
     ? Math.round((Date.now() - window.quizStartTime) / 1000)
     : 0;
-  const location =
-    typeof getLocationPayload === "function"
-      ? getLocationPayload()
-      : { country: "", city: "" };
+  const location = getLocationPayload();
   const payload = {
     timestamp: new Date().toISOString(),
-    clientId: typeof getClientId === "function" ? getClientId() : "",
+    clientId: getClientId(),
     keyword: topKey,
     action: "quiz_completed",
-    source: typeof getTrafficSource === "function" ? getTrafficSource() : "",
+    source: getTrafficSource(),
     referrer: document.referrer || "",
-    device: typeof getDeviceType === "function" ? getDeviceType() : "",
+    device: getDeviceType(),
     country: location.country,
     city: location.city,
     timeSpent,
@@ -201,10 +196,6 @@ function submitToGAS(scoreArr, topKey) {
 
 // ── 重置 ──────────────────────────────────────────────────────────────────
 function resetQuiz() {
-  scores = [0, 0, 0, 0, 0];
-  qIndex = 0;
-  answerHistory = [];
-  window.quizStartTime = 0;
   startQuiz();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -212,7 +203,4 @@ function resetQuiz() {
 // ── 工具函數 ──────────────────────────────────────────────────────────────
 function show(...els) {
   els.forEach((el) => el && (el.style.display = ""));
-}
-function hide(...els) {
-  els.forEach((el) => el && (el.style.display = "none"));
 }

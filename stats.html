@@ -109,7 +109,7 @@
         const errorEl = document.getElementById("stats-error");
 
         // GAS URL 未設定 → 顯示提示
-        if (!GAS_STATS_URL || GAS_STATS_URL === "YOUR_GAS_WEB_APP_URL_HERE") {
+        if (!GAS_STATS_URL || GAS_STATS_URL.startsWith("__")) {
           loadingEl.style.display = "none";
           errorEl.style.display = "";
           errorEl.innerHTML =
