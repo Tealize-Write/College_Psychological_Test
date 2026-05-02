@@ -1,6 +1,6 @@
 /* ── CONFIG ── */
-const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbyWX0FP6qYY5-wmyr3CBmnopWOOR5gfD-NxBHjmX4aeLquGX4YfTZtgYBRb2ZQxhJVk/exec";
+const GAS_URL = "__GAS_URL__";
+const TOKEN = "__TOKEN__";
 
 function getClientId() {
   const key = "abyss_client_id";
