@@ -1,4 +1,4 @@
-// calc.js — 一題一題流程 + 分數計算 + Chart.js 長條圖（含數值標籤）+ GAS 提交
+// calc.js — 一題一題流程 + 分數計算 + GAS 提交
 // GAS_URL 定義於 js/config.js
 
 // ── 學院定義（index 對應 scores 陣列位置） ───────────────────────────────
@@ -93,8 +93,7 @@ function renderQuestion() {
 
   // 淡入動畫
   questionCard.classList.remove("fade-in");
-  void questionCard.offsetWidth;
-  questionCard.classList.add("fade-in");
+  requestAnimationFrame(() => questionCard.classList.add("fade-in"));
 }
 
 function selectOption(optScores, btn, optIdx) {

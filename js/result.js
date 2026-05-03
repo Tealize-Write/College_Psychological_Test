@@ -552,14 +552,14 @@ function renderBarShelf(shelf, values, activeKey) {
     const row = el("div", { className: `academy-book-item${key === activeKey ? " is-top" : ""}` });
     const bar = el("div", { className: "academy-book-bar" });
     const fill = el("span", { className: "academy-book-fill" });
-    fill.style.width = "0%";
+    fill.style.height = "0%";
     fill.style.background = ACADEMY_COLORS[key];
     bar.appendChild(fill);
-    row.appendChild(el("span", { className: "academy-book-label" }, names[key]));
     row.appendChild(bar);
+    row.appendChild(el("span", { className: "academy-book-label" }, names[key]));
     row.appendChild(el("span", { className: "academy-book-score" }, String(v)));
     shelf.appendChild(row);
-    setTimeout(() => { fill.style.width = `${ratio}%`; }, idx * 80 + 16);
+    setTimeout(() => { fill.style.height = `${ratio}%`; }, idx * 80 + 16);
   });
 }
 

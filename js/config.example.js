@@ -22,36 +22,43 @@ function getTrafficSource() {
   return params.get("source") || params.get("utm_source") || "direct";
 }
 
-const _tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown";
-
-window.userLocationData = {
-  country: _tz,
-  city: _tz,
-};
+window.userLocationData = { country: "unknown", city: "unknown" };
 
 window._locationReady = (async () => {
-  const createTimeout = (ms) =>
-    new Promise((resolve) => setTimeout(resolve, ms, null));
+  const CACHE_KEY = "abyss_location";
+  const TTL = 24 * 60 * 60 * 1000;
+
+  try {
+    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+    if (cached && Date.now() - cached.ts < TTL) {
+      window.userLocationData.country = cached.country;
+      window.userLocationData.city = cached.city;
+      return;
+    }
+  } catch (_) {}
 
   try {
     const res = await Promise.race([
       fetch("https://ipwho.is/"),
-      createTimeout(2000),
+      new Promise((r) => setTimeout(r, 2000, null)),
     ]);
     if (!res || !res.ok) return;
-
     const data = await res.json();
     if (data && data.success) {
-      window.userLocationData.country =
-        data.country || window.userLocationData.country;
-      window.userLocationData.city = data.city || window.userLocationData.city;
+      window.userLocationData.country = data.country || "unknown";
+      window.userLocationData.city = data.city || "unknown";
+      localStorage.setItem(CACHE_KEY, JSON.stringify({
+        country: window.userLocationData.country,
+        city: window.userLocationData.city,
+        ts: Date.now(),
+      }));
     }
   } catch (_) {}
 })();
 
 function getLocationPayload() {
   return {
-    country: window.userLocationData?.country || _tz,
-    city: window.userLocationData?.city || _tz,
+    country: window.userLocationData.country,
+    city: window.userLocationData.city,
   };
 }

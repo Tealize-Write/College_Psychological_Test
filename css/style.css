@@ -669,35 +669,6 @@ body.theme-white {
   }
 }
 
-/* ── 頂部導覽列 ───────────────────────────────────────────────────────── */
-.top-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 24px;
-  background: rgba(12, 10, 9, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(230, 194, 136, 0.15);
-}
-.top-nav .nav-links {
-  display: flex;
-  gap: 24px;
-}
-.top-nav .nav-links a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.95rem;
-  letter-spacing: 1px;
-  transition: color 0.2s;
-}
-.top-nav .nav-links a:hover {
-  color: var(--accent-color);
-}
 .lang-switcher {
   display: flex;
   gap: 8px;
@@ -722,12 +693,6 @@ body.theme-white {
   color: #1c1917;
   transform: none;
   box-shadow: none;
-}
-
-/* 有 top-nav 時，container 往下推 */
-body:has(.top-nav) .container,
-body:has(.top-nav) #quiz-wrap {
-  margin-top: 80px;
 }
 
 /* ── 進度條 ───────────────────────────────────────────────────────────── */
@@ -957,43 +922,21 @@ body:has(.top-nav) #quiz-wrap {
 }
 
 .academy-bookshelf-container {
-  position: relative;
-  padding: 14px 12px;
+  display: flex;
+  gap: 8px;
+  padding: 16px 12px 12px;
   border-radius: 10px;
-  background:
-    linear-gradient(180deg, rgba(28, 23, 20, 0.95), rgba(15, 12, 10, 0.95)),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.03) 0 10px,
-      rgba(0, 0, 0, 0.03) 10px 20px
-    );
+  background: linear-gradient(180deg, rgba(28, 23, 20, 0.95), rgba(15, 12, 10, 0.95));
   border: 1px solid rgba(255, 255, 255, 0.08);
-}
-.academy-bookshelf-container::after {
-  content: "";
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 8px;
-  height: 8px;
-  border-radius: 4px;
-  background: linear-gradient(
-    180deg,
-    rgba(120, 83, 52, 0.9),
-    rgba(83, 55, 33, 0.9)
-  );
 }
 
 .academy-book-item {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 66px 1fr 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 6px;
   opacity: 0;
-  transform: translateX(-10px);
   animation: barItemIn 0.4s ease forwards;
 }
 .academy-book-item:nth-child(1) { animation-delay:   0ms; }
@@ -1002,44 +945,42 @@ body:has(.top-nav) #quiz-wrap {
 .academy-book-item:nth-child(4) { animation-delay: 240ms; }
 .academy-book-item:nth-child(5) { animation-delay: 320ms; }
 @keyframes barItemIn {
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
 }
-.academy-book-item:last-child {
-  margin-bottom: 0;
-}
+
 .academy-book-item.is-top .academy-book-label {
   color: #fff;
-  text-shadow: 0 0 10px var(--accent-glow);
-}
-.academy-book-item.is-top .academy-book-bar {
-  border-color: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.06);
+  text-shadow: 0 0 8px var(--accent-glow);
 }
 .academy-book-item.is-top .academy-book-fill {
-  filter: brightness(1.18);
+  filter: brightness(1.2) saturate(1.1);
 }
 
 .academy-book-label {
   color: var(--text-secondary);
   font-weight: 700;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
+  font-size: 0.72rem;
+  text-align: center;
+  line-height: 1.3;
 }
 
 .academy-book-bar {
-  height: 26px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px 8px 3px 3px;
+  border-bottom: 3px solid rgba(100, 65, 35, 0.7);
   overflow: hidden;
-  position: relative;
 }
+
 .academy-book-fill {
-  display: block;
-  height: 100%;
-  border-right: 2px solid rgba(255, 255, 255, 0.4);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
-  transition: width 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 100%;
+  height: 0%;
+  border-radius: 6px 6px 0 0;
+  transition: height 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
 }
@@ -1047,28 +988,33 @@ body:has(.top-nav) #quiz-wrap {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  animation: shimmer 2.5s ease-in-out infinite;
+  background: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.18), transparent);
+  animation: shimmerV 2.5s ease-in-out infinite;
+}
+@keyframes shimmerV {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(-250%); }
 }
 
 .academy-book-score {
-  text-align: right;
+  text-align: center;
   color: #f5f5f4;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.72rem;
   opacity: 0;
   animation: barItemIn 0.3s ease forwards;
 }
-.academy-book-item:nth-child(1) .academy-book-score { animation-delay:  430ms; }
-.academy-book-item:nth-child(2) .academy-book-score { animation-delay:  510ms; }
-.academy-book-item:nth-child(3) .academy-book-score { animation-delay:  590ms; }
-.academy-book-item:nth-child(4) .academy-book-score { animation-delay:  670ms; }
-.academy-book-item:nth-child(5) .academy-book-score { animation-delay:  750ms; }
+.academy-book-item:nth-child(1) .academy-book-score { animation-delay: 480ms; }
+.academy-book-item:nth-child(2) .academy-book-score { animation-delay: 560ms; }
+.academy-book-item:nth-child(3) .academy-book-score { animation-delay: 640ms; }
+.academy-book-item:nth-child(4) .academy-book-score { animation-delay: 720ms; }
+.academy-book-item:nth-child(5) .academy-book-score { animation-delay: 800ms; }
 
 .academy-bookshelf-empty {
   margin: 0;
   text-align: center;
   color: var(--text-secondary);
+  width: 100%;
 }
 
 .result-actions-grid {
@@ -1184,17 +1130,12 @@ a:focus-visible {
     gap: 12px;
     font-size: 0.85rem;
   }
-  body:has(.top-nav) .container,
-  body:has(.top-nav) #quiz-wrap {
-    margin-top: 64px;
-    padding: 20px 16px;
-  }
-  .academy-book-item {
-    grid-template-columns: 56px 1fr 34px;
-    gap: 8px;
-  }
   .academy-book-bar {
-    height: 22px;
+    height: 110px;
+  }
+  .academy-book-label,
+  .academy-book-score {
+    font-size: 0.62rem;
   }
   .result-actions-row,
   .result-actions-row-two {
