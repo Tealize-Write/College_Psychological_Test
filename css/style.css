@@ -408,100 +408,78 @@ tr:hover td {
 
 /* --- 學院特定主題 (氛圍感升級版) --- */
 
-/* 🔴 紅馳學院：燃燒的餘燼與霓虹 */
+/* 🔴 紅馳學院：烈焰與霓虹殘影 */
 body.theme-red {
-  /* 背景：從右上角打入一道暗紅光，漸變到左下的深黑 */
   --bg-body-gradient: radial-gradient(
-    circle at 80% 20%,
-    #4a0404,
-    #2b0a0a,
+    ellipse at 85% 15%,
+    #5a0808,
+    #300404,
+    #150101,
     #000000
   );
-
-  /* 卡片：帶有一點點紅色的黑玻璃 */
-  --bg-card: rgba(40, 20, 20, 0.8);
-
-  /* 核心色：鮮豔的朱紅 */
-  --accent-color: #ff4d4d;
-  --accent-glow: rgba(255, 77, 77, 0.6);
+  --bg-card: rgba(48, 12, 12, 0.82);
+  --accent-color: #ff5c5c;
+  --accent-glow: rgba(255, 92, 92, 0.55);
 }
 
-/* 🟢 綠躍學院：異質的螢光與實驗液 */
+/* 🟢 綠躍學院：詭異螢光與異質生命體 */
 body.theme-green {
-  /* 背景：從上方流下的詭異綠光，漸變到深邃黑綠 */
   --bg-body-gradient: radial-gradient(
-    circle at 50% 0%,
-    #1a4a04,
-    #0f2b0a,
-    #051402,
+    ellipse at 50% -5%,
+    #0d3b00,
+    #061e00,
+    #020d00,
     #000000
   );
-
-  /* 卡片：帶有一點點綠色的黑玻璃 */
-  --bg-card: rgba(20, 35, 20, 0.8);
-
-  /* 核心色：高亮酸性綠 */
+  --bg-card: rgba(10, 28, 6, 0.85);
   --accent-color: #a3ff00;
-  --accent-glow: rgba(163, 255, 0, 0.5);
+  --accent-glow: rgba(163, 255, 0, 0.45);
 }
 
-/* 🔵 藍行學院：冰冷的深海與邏輯矩陣 */
+/* 🔵 藍行學院：深淵邏輯矩陣 */
 body.theme-blue {
-  /* 背景：深藍與青色的冷冽交織 */
   --bg-body-gradient: radial-gradient(
-    circle at 20% 50%,
-    #042a4a,
-    #0a1f2b,
+    ellipse at 15% 50%,
+    #001640,
+    #00091f,
+    #000408,
     #000000
   );
-
-  /* 卡片：帶有一點點藍色的黑玻璃 */
-  --bg-card: rgba(15, 25, 35, 0.85);
-
-  /* 核心色：雷射冰藍 */
+  --bg-card: rgba(0, 12, 30, 0.88);
   --accent-color: #00eaff;
-  --accent-glow: rgba(0, 234, 255, 0.6);
+  --accent-glow: rgba(0, 234, 255, 0.55);
 }
 
-/* ⚫ 墨佇學院：水墨暈染與極致深淵 */
+/* ⚫ 墨佇學院：水墨深淵與紙本靈魂 */
 body.theme-black {
-  /* 背景：純粹的黑灰階層次，像水墨暈開 */
   --bg-body-gradient: radial-gradient(
-    circle at 50% 50%,
-    #2b2b2b,
-    #1a1a1a,
+    ellipse at 50% 30%,
+    #1c1c1c,
+    #0e0e0e,
+    #040404,
     #000000
   );
-
-  /* 卡片：極高不透明度的深黑，強調莊重感 */
-  --bg-card: rgba(15, 15, 15, 0.9);
-
-  /* 核心色：純白 (高對比) */
-  --accent-color: #ffffff;
-  --accent-glow: rgba(255, 255, 255, 0.4);
-  --text-primary: #f5f5f5;
-  --text-secondary: #a3a3a3;
+  --bg-card: rgba(8, 8, 8, 0.92);
+  --accent-color: #f0ebe0;
+  --accent-glow: rgba(240, 235, 224, 0.35);
+  --text-primary: #f0ebe0;
+  --text-secondary: #9e9890;
 }
 
-/* ⚪ 銀倚學院：鈦金屬光澤與月光 */
+/* ⚪ 銀倚學院：月光鈦金屬 */
 body.theme-white {
-  /* 背景：冷調的金屬灰藍，模擬月光照在金屬上的質感 */
   --bg-body-gradient: radial-gradient(
-    circle at 90% 10%,
-    #4ca1af,
-    #2c3e50,
-    #1a252f,
+    ellipse at 80% 10%,
+    #1a2540,
+    #0d1525,
+    #050910,
     #000000
   );
-
-  /* 卡片：稍微亮一點的灰玻璃 */
-  --bg-card: rgba(255, 255, 255, 0.08);
-
-  /* 核心色：銀白 */
-  --accent-color: #e0e0e0;
-  --accent-glow: rgba(224, 224, 224, 0.5);
-  --text-primary: #f0f0f0;
-  --text-secondary: #b0b0b0;
+  --bg-card: rgba(255, 255, 255, 0.07);
+  --accent-color: #b8cce0;
+  --accent-glow: rgba(184, 204, 224, 0.45);
+  --text-primary: #e8eef4;
+  --text-secondary: #8a9aaa;
 }
 /* --- 學院專屬按鈕配色 --- */
 .res_btn.btn-red {
@@ -516,47 +494,47 @@ body.theme-white {
 }
 
 .res_btn.btn-green {
-  border-color: #b0ff1a;
-  color: #b0ff1a;
-  box-shadow: 0 0 10px rgba(176, 255, 26, 0.2);
+  border-color: #a3ff00;
+  color: #a3ff00;
+  box-shadow: 0 0 10px rgba(163, 255, 0, 0.2);
 }
 .res_btn.btn-green:hover {
-  background-color: #b0ff1a;
+  background-color: #a3ff00;
   color: #000;
-  box-shadow: 0 0 30px rgba(176, 255, 26, 0.6);
+  box-shadow: 0 0 30px rgba(163, 255, 0, 0.6);
 }
 
 .res_btn.btn-blue {
-  border-color: #24e5ff;
-  color: #24e5ff;
-  box-shadow: 0 0 10px rgba(36, 229, 255, 0.2);
+  border-color: #00eaff;
+  color: #00eaff;
+  box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
 }
 .res_btn.btn-blue:hover {
-  background-color: #24e5ff;
+  background-color: #00eaff;
   color: #000;
-  box-shadow: 0 0 30px rgba(36, 229, 255, 0.6);
+  box-shadow: 0 0 30px rgba(0, 234, 255, 0.6);
 }
 
 .res_btn.btn-black {
-  border-color: #ffffff;
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  border-color: #f0ebe0;
+  color: #f0ebe0;
+  box-shadow: 0 0 10px rgba(240, 235, 224, 0.2);
 }
 .res_btn.btn-black:hover {
-  background-color: #ffffff;
+  background-color: #f0ebe0;
   color: #000;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 30px rgba(240, 235, 224, 0.5);
 }
 
 .res_btn.btn-white {
-  border-color: #d1d5db;
-  color: #d1d5db;
-  box-shadow: 0 0 10px rgba(209, 213, 219, 0.2);
+  border-color: #b8cce0;
+  color: #b8cce0;
+  box-shadow: 0 0 10px rgba(184, 204, 224, 0.2);
 }
 .res_btn.btn-white:hover {
-  background-color: #d1d5db;
+  background-color: #b8cce0;
   color: #000;
-  box-shadow: 0 0 30px rgba(209, 213, 219, 0.6);
+  box-shadow: 0 0 30px rgba(184, 204, 224, 0.5);
 }
 
 /* --- 動態背景特效 --- */
